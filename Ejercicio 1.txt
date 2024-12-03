@@ -1,0 +1,27 @@
+public class Main {
+
+    public static void main(String[] args) {
+        
+        int produccionMinimaMensual = calcularProduccionMinimaMensual();
+        
+        
+        System.out.println("Producción mínima mensual: " + produccionMinimaMensual);
+    }
+
+    public static int calcularProduccionMinimaMensual() {
+        
+        final double COSTO_FIJO = 800; 
+        final double COSTO_VARIABLE = 20; 
+        final double COSTO_MAXIMO_POR_SOMBRERO = 25; 
+        final int DIAS_POR_MES = 30; 
+
+        
+        double produccionDiariaMinima = COSTO_FIJO / (COSTO_MAXIMO_POR_SOMBRERO - COSTO_VARIABLE);
+
+        
+        int produccionDiariaMinimaEntera = (int) Math.ceil(produccionDiariaMinima);
+
+
+        return produccionDiariaMinimaEntera * DIAS_POR_MES;
+    }
+}

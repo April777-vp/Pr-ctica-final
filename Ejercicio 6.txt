@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int largo = 100; 
+        int ancho = 60; 
+        int area = largo * ancho;
+        int capacidadMesas = area / 2; 
+        int capacidadParticipantes = capacidadMesas * 3; 
+
+        
+        int participantesActuales = 0;
+
+        
+        System.out.println("Bienvenido al registro del Hackaton USB 2024.");
+
+    
+        while (participantesActuales < capacidadParticipantes) {
+            
+            System.out.print("\nIngrese el nombre del participante: ");
+            String nombre = scanner.nextLine();
+
+            System.out.print("Ingrese la edad del participante: ");
+            int edad = scanner.nextInt();
+            scanner.nextLine(); 
+
+            if (edad > 15 && edad < 30) {
+                if (participantesActuales < capacidadParticipantes) {
+                    participantesActuales++;
+                    System.out.println("¡Felicidades! " + nombre + ", eres parte del evento.");
+                } else {
+                    System.out.println("Lo siento, " + nombre + ", el evento está lleno.");
+                }
+            } else {
+                System.out.println("Lo siento, " + nombre + ", tu edad no está en el rango definido.");
+            }
+
+            if (participantesActuales < capacidadParticipantes) {
+                System.out.print("\n¿Desea registrar a otro participante? (s/n): ");
+                String respuesta = scanner.nextLine();
+                if (respuesta.equalsIgnoreCase("n")) {
+                    break;
+                }
+            }
+        }
+
+        System.out.println("\nRegistro finalizado. Participantes registrados: " + participantesActuales + "/" + capacidadParticipantes);
+
+        scanner.close();
+    }
+}

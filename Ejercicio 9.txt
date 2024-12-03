@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        double[] tarifas = {3.5, 4.5, 5.8, 7, 8, 9, 12, 17, 21};
+        int[] limites = {20, 50, 100, 200, 350, 500, 1000, 2000, 3000};
+
+        
+        System.out.print("Ingrese el número de paquetes a enviar: ");
+        int numPaquetes = scanner.nextInt();
+
+        double costoIndividual = 0.0;
+        int pesoTotal = 0;
+
+        for (int i = 1; i <= numPaquetes; i++) {
+            System.out.print("Ingrese el peso del paquete " + i + " en gramos: ");
+            int peso = scanner.nextInt();
+            pesoTotal += peso;
+
+            
+            double costo = calcularTarifa(peso, tarifas, limites);
+            if (costo == -1) {
+                System.out.println("El paquete " + i + " tiene un peso fuera del rango permitido. Envío especial.");
+            } else {
+                System.out.println("El costo del paquete " + i + " es: " + costo + " Bs.");
+                costoIndividual += costo;
+            }
+        }
+
+    
+        double costoTotal = calcularTarifa(pesoTotal, tarifas, limites);
+
+        System.out.println("\nResumen:");
+        System.out.println("Costo enviando los paquetes por separado: " + costoIndividual + " Bs.");
+        if (costoTotal == -1) {
+            System.out.println("El peso total (" + pesoTotal + " gramos) está fuera del rango permitido. Envío especial.");
+        } else {
+            System.out.println("Costo enviando todos los paquetes juntos: " + costoTotal + " Bs.");
+
+            
+            if (costoTotal < costoIndividual) {
+                System.out.println("Es más económico enviar todos los paquetes juntos.");
+            } else {
+                System.out.println("Es más económico enviar los paquetes por separado.");
+            }
+        }
+
+    }
+
+    public static double calcularTarifa(int peso, double[] tarifas, int[] limites) {
+        for (int i = 0; i < limites.length; i++) {
+            if (peso <= limites[i]) {
+                return tarifas[i];
+            }
+        }
+        return -1; 
+    }
+}

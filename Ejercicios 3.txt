@@ -1,0 +1,28 @@
+import
+java.util.Scanner;
+public class Main{
+public static void
+main (String[]args){
+    Scanner scanner=new 
+    Scanner(System.in);
+    int n,x,y=0,nr;
+    System.out.println ("Ingrese una ficha de 6 y 7 digitos:");
+    nr=scanner.nextInt();
+    if(nr>=100000&& nr<=9999999){
+        n=nr;
+        while(n!=0){
+            x=n%10;
+            y=(y*10)+x;
+            n=n/10;
+        }
+        if(nr==y)
+        {
+         System.out.println ("Te toco ir a las clases presenciales.");
+        }else{
+            System.out.println ("Te quedas en casita,¡pero a estudiar!.");
+        }
+    }else{
+    System.out.println ("El numero no es valido.");
+    }
+}
+}

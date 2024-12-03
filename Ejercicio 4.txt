@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        List<Integer> grupo1 = new ArrayList<>();
+        List<Integer> grupo2 = new ArrayList<>();
+        List<Integer> grupo3 = new ArrayList<>();
+        List<Integer> grupo4 = new ArrayList<>();
+
+    
+        int totalEstudiantes = 1000;
+        int minEdad = 10;
+        int maxEdad = 17;
+        int rangoEdades = maxEdad - minEdad + 1;
+
+        
+        int[] edades = new int[totalEstudiantes];
+        for (int i = 0; i < totalEstudiantes; i++) {
+            edades[i] = minEdad + (i % rangoEdades);
+        }
+
+        
+        for (int edad : edades) {
+            if (edad % 5 == 0 && edad % 2 != 0) {
+                grupo1.add(edad);
+            } else if (edad % 4 == 0) {
+                grupo2.add(edad);
+            } else if (edad % 3 == 0 && edad % 4 != 0 && edad % 5 != 0 && edad % 2 != 0) {
+                grupo3.add(edad);
+            } else {
+                grupo4.add(edad);
+            }
+        }
+
+        
+        System.out.println("Grupo 1 (múltiplos de 5 pero no de 2): " + grupo1.size() + " estudiantes");
+        System.out.println("Grupo 2 (múltiplos de 4): " + grupo2.size() + " estudiantes");
+        System.out.println("Grupo 3 (múltiplos de 3 pero no de 4, 5 ni 2): " + grupo3.size() + " estudiantes");
+        System.out.println("Grupo 4 (resto): " + grupo4.size() + " estudiantes");
+    }
+}
